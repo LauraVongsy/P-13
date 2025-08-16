@@ -1,6 +1,6 @@
 # Your Car Your Way – PoC Chat
 
-## 📌 Description
+##  Description
 Ce projet est un **Proof of Concept (PoC)** pour l’application **Your Car Your Way**, une plateforme de location de voitures internationale.  
 Le but de ce PoC est de démontrer la faisabilité de la **fonctionnalité de chat en ligne** permettant aux clients de communiquer avec le service client.
 
