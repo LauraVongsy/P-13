@@ -1,0 +1,17 @@
+<div class="chat-box">
+  <h3>POC Chat (Twilio)</h3>
+  <label for="userSelect">Choisir l’utilisateur :</label>
+<select [(ngModel)]="currentUser" (change)="selectUser()">
+  <option value="user1">User 1</option>
+  <option value="user2">User 2</option>
+</select>
+
+  <div class="messages">
+    <div *ngFor="let msg of messages">
+      <strong>{{msg.author}}:</strong> {{msg.body}}
+    </div>
+  </div>
+  <input [(ngModel)]="newMessage" (keydown.enter)="sendMessage()" placeholder="Tapez un message" />
+  <button (click)="sendMessage()">Envoyer</button>
+</div>
+
