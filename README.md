@@ -35,7 +35,7 @@ L’implémentation repose sur :
 - CI/CD (GitHub Actions envisagé pour la suite)
 
 
-## ⚡ Installation & Lancement
+## Installation & Lancement
 ### 1. Cloner le projet
 
 ### 2. Lancer le backend
@@ -55,12 +55,12 @@ Le frontend écoute sur **http://localhost:4200**
 
 ---
 
-## 🐳 Lancement avec Docker Compose
-Le projet est fourni avec un fichier `docker-compose.yml` pour lancer le **frontend et backend** ensemble.
+## Lancement avec Docker Compose
+Le projet est fourni avec un fichier `docker-compose.yml` pour lancer la base de données (non utilisée pour le POC en l'état actuel, utilie pour une évolution potentielle)
 
 ### 1. Construire et lancer
 ```bash
-docker-compose up --build
+docker-compose up -d
 ```
 
 ### 2. Accéder à l’application
