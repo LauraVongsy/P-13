@@ -1,59 +1,91 @@
-# Frontend
+# Your Car Your Way – PoC Chat
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+## 📌 Description
+Ce projet est un **Proof of Concept (PoC)** pour l’application **Your Car Your Way**, une plateforme de location de voitures internationale.  
+Le but de ce PoC est de démontrer la faisabilité de la **fonctionnalité de chat en ligne** permettant aux clients de communiquer avec le service client.
 
-## Development server
+L’implémentation repose sur :
+- Un **frontend Angular**
+- Un **backend Spring Boot** fournissant un token d’accès Twilio.
+- Une intégration avec **Twilio Conversations API** pour gérer le chat temps réel.
 
-To start a local development server, run:
+---
 
+## Fonctionnalités couvertes dans le PoC
+- Page d’accueil Angular avec bouton pour **ouvrir/fermer le chat**.
+- **Composant standalone `ChatComponent`** permettant d’envoyer/recevoir des messages.
+- Connexion au service Twilio via un **token généré côté backend**.
+
+
+---
+
+##  Stack technique
+### Frontend
+- **Angular 19 (standalone)**
+- **HttpClient avec provideHttpClient()**
+- **Twilio Conversations JS SDK**
+
+### Backend
+- **Java Spring Boot**
+- **API REST** exposant `/api/chat/token` pour générer un token Twilio
+- (PoC → pas de microservices, mais architecture finale prévue en microservices)
+
+### Infrastructure (PoC)
+- Application **Dockerisée** (frontend + backend)
+- CI/CD (GitHub Actions envisagé pour la suite)
+
+
+## ⚡ Installation & Lancement
+### 1. Cloner le projet
+
+### 2. Lancer le backend
 ```bash
-ng serve
+cd backend
+./mvnw spring-boot:run
+```
+Le backend écoute sur **http://localhost:8080**
+
+### 3. Lancer le frontend
+```bash
+cd frontend
+npm install
+npm start
+```
+Le frontend écoute sur **http://localhost:4200**
+
+---
+
+## 🐳 Lancement avec Docker Compose
+Le projet est fourni avec un fichier `docker-compose.yml` pour lancer le **frontend et backend** ensemble.
+
+### 1. Construire et lancer
+```bash
+docker-compose up --build
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 2. Accéder à l’application
+- Frontend : [http://localhost:4200](http://localhost:4200)  
+- Backend : [http://localhost:8080](http://localhost:8080)
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Fonctionnement attendu
+- Accéder à `http://localhost:4200`
+- Cliquer sur **"Ouvrir le chat"**
+- Le composant `ChatComponent` s’affiche et se connecte à Twilio
+- Les messages envoyés s’affichent en direct
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+##  Sécurité
+- Les credentials Twilio sont secrets donc ils ne sont pas sur ce repo.
+- Authentification utilisateur **non incluse dans ce PoC** 
+- Les tokens Twilio sont générés côté backend pour éviter toute exposition côté client.
+- Les communications se font en **HTTPS** dans la version finale.
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## Limitations du PoC
+- Pas de stockage persistant des messages (uniquement temps réel).
+- Base de données prête pour des tests de sauvegardes de conversations ultérieures.
+- L’interface du chat est volontairement simplifiée.
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
